@@ -1,0 +1,45 @@
+services:
+  # Backend API
+  server:
+    build: ./server
+    container_name: resumatch-server
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongo:27017/resumatch
+      - JWT_SECRET=${JWT_SECRET}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on:
+      - mongo
+    networks:
+      - resumatch-network
+
+  # Frontend UI
+  client:
+    build: ./client
+    container_name: resumatch-client
+    ports:
+      - "8080:80"
+    depends_on:
+      - server
+    networks:
+      - resumatch-network
+
+  # Database (Optional - but great for local isolation)
+  mongo:
+    image: mongo:latest
+    container_name: resumatch-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - resumatch-network
+
+networks:
+  resumatch-network:
+    driver: bridge
+
+volumes:
+  mongo-data:

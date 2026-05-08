@@ -1,0 +1,11 @@
+John Doe
+Software Engineer
+Email: john@example.com
+
+Experience:
+- Developed web applications using React and Node.js.
+- Optimized database queries for performance.
+- Led a team of 3 developers.
+
+Skills:
+- JavaScript, React, Node.js, SQL, AWS

@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-body font-sans;
+    background-color: #0C0A09;
+    color: #E7E5E4;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0C0A09;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #292524;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #F97316;
+  }
+
+  ::selection {
+    background: rgba(249, 115, 22, 0.3);
+    color: #FAFAF9;
+  }
+}
+
+@layer components {
+  /* Card */
+  .card {
+    @apply rounded-2xl bg-[#1C1917] border border-white/10 transition-all duration-300;
+  }
+
+  .card:hover {
+    @apply bg-[#292524] border-white/20;
+  }
+
+  .card-static {
+    @apply rounded-2xl bg-[#1C1917] border border-white/10;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-white
+           bg-gradient-to-r from-[#F97316] to-[#EA580C]
+           transition-all duration-200 hover:from-[#FB923C] hover:to-[#F97316]
+           hover:shadow-orange active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-[#F97316]
+           border border-[#F97316]/30 bg-[#F97316]/10
+           transition-all duration-200 hover:bg-[#F97316]/20 hover:border-[#F97316]/60
+           active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm text-[#A8A29E]
+           hover:text-[#FAFAF9] hover:bg-white/5 transition-all duration-200;
+  }
+
+  /* Badge / Chip */
+  .chip {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+
+  .chip-orange {
+    @apply chip bg-[#F97316]/15 text-[#FB923C] border border-[#F97316]/30;
+  }
+
+  .chip-red {
+    @apply chip bg-[#EF4444]/10 text-[#EF4444]/80 border border-[#EF4444]/20;
+  }
+
+  .chip-green {
+    @apply chip bg-[#22C55E]/10 text-[#22C55E]/80 border border-[#22C55E]/20;
+  }
+
+  .chip-muted {
+    @apply chip bg-white/5 text-[#A8A29E] border border-white/10;
+  }
+
+  /* Input */
+  .input-base {
+    @apply w-full bg-[#0C0A09] border border-white/10 rounded-xl px-4 py-3 text-[#FAFAF9]
+           placeholder-[#A8A29E] text-sm
+           focus:outline-none focus:border-[#F97316]/50 focus:ring-2 focus:ring-[#F97316]/10
+           transition-all duration-200;
+  }
+
+  /* Section label */
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-wider text-[#A8A29E];
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #F97316, #FB923C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-orange {
+    box-shadow: 0 0 24px rgba(249, 115, 22, 0.3);
+  }
+
+  .glow-orange-sm {
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.2);
+  }
+
+  .border-orange-subtle {
+    border-color: rgba(249, 115, 22, 0.3);
+  }
+
+  /* Grid lines overlay */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: #0C0A09 !important;
+    color: #FAFAF9 !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .card-static {
+    break-inside: avoid;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    background: #1C1917 !important;
+  }
+
+  /* Force grid layout in PDF */
+  .grid {
+    display: grid !important;
+  }
+}
