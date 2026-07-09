@@ -59,7 +59,8 @@ export default function Sidebar() {
     setLoadingPro(true)
     try {
       const token = localStorage.getItem('token')
-      const response = await axios.post('/api/payment/create-checkout-session', {}, {
+      const apiBase = import.meta.env.VITE_API_URL || '/api'
+      const response = await axios.post(`${apiBase}/payment/create-checkout-session`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       })
       if (response.data.url) {

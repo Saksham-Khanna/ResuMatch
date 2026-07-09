@@ -19,8 +19,9 @@ export default function ProfileSettingsModal({ isOpen, onClose, user, onLogout }
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
+      const apiBase = import.meta.env.VITE_API_URL || '/api'
       await axios.post(
-        '/api/auth/change-password',
+        `${apiBase}/auth/change-password`,
         { currentPassword, newPassword },
         { headers: { Authorization: `Bearer ${token}` } }
       );
