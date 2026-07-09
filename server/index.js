@@ -80,6 +80,11 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Root route
+app.get('/', (req, res) => {
+  res.send('ResuMatch API is running. Access endpoints via /api/...');
+});
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
